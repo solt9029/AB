@@ -1,0 +1,41 @@
+#uselib "user32.dll"
+
+#func SetWindowLongA "SetWindowLongA" int,int,int
+#func SetLayeredWindowAttributes "SetLayeredWindowAttributes" int,int,int,int
+
+#const WS_EX_LAYERED $00080000
+#const WS_EX_TRANSPARENT $00000020
+
+chgdisp 1,ginfo(20),ginfo(21)
+bgscr 0,ginfo(20),ginfo(21),,0,0
+
+SetWindowLongA hwnd,-20,WS_EX_LAYERED|WS_EX_TRANSPARENT
+SetLayeredWindowAttributes hwnd,0,1,1
+color:boxf 0,0,ginfo(20),ginfo(21)
+
+buffer 2
+picload "ab.gif",2
+gsel 0,2
+
+x=0
+y=0
+vx=1
+vy=1
+
+repeat
+	redraw 0
+	color:boxf 
+	x+=vx
+	y+=vy
+	if(x>ginfo(20)-400 || x<0){vx=-vx}
+	if(y>ginfo(21)-100 || y<0){vy=-vy}
+	pos x,y
+	color 255,0,0
+	font "メイリオ",30,1
+	mes "ABPro(アブプロ)だけに'アブ'!!"
+	gcopy 2,0,0,400,100
+	redraw 1
+	await 3
+loop
+
+stop
