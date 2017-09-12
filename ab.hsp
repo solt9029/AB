@@ -19,23 +19,23 @@ gsel 0,2
 
 x=0
 y=0
-vx=1
-vy=1
+vx=7
+vy=7
 
 repeat
 	redraw 0
 	color:boxf 
 	x+=vx
 	y+=vy
-	if(x>ginfo(20)-400 || x<0){vx=-vx}
-	if(y>ginfo(21)-100 || y<0){vy=-vy}
+	if(x>ginfo(20)-900 || x<0){vx=-vx}
+	if(y>ginfo(21)-200 || y<0){vy=-vy}
 	pos x,y
 	color 255,0,0
-	font "メイリオ",30,1
+	font "メイリオ",60,1
 	mes "ABPro(アブプロ)だけに'アブ'!!"
 	gcopy 2,0,0,400,100
 	redraw 1
-	await 3
+	await 20
 loop
 
 stop
